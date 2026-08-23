@@ -19,9 +19,16 @@ export class VpcCdkProjectStack extends cdk.Stack {
           name: 'PrivateSubnet',
           subnetType: ec2.SubnetType.PRIVATE_ISOLATED,
           cidrMask: 24
+        },
+        {
+          name: 'DatabaseSubnet',
+          subnetType: ec2.SubnetType.PRIVATE_ISOLATED,
+          cidrMask: 24
         }
       ]
     })
+
+
 
     // Output the VPC ID
     new cdk.CfnOutput(this, 'VpcId', {
