@@ -1,9 +1,10 @@
 #!/usr/bin/env node
 import * as cdk from 'aws-cdk-lib/core';
 import { VpcCdkProjectStack } from '../lib/vpc-cdk-project-stack';
+import { Ec2Stack } from '../lib/ec2-stack';
 
 const app = new cdk.App();
-new VpcCdkProjectStack(app, 'VpcCdkProjectStack', {
+const vpcStack = new VpcCdkProjectStack(app, 'VpcCdkProjectStack', {
   /* If you don't specify 'env', this stack will be environment-agnostic.
    * Account/Region-dependent features and context lookups will not work,
    * but a single synthesized template can be deployed anywhere. */
@@ -18,3 +19,12 @@ new VpcCdkProjectStack(app, 'VpcCdkProjectStack', {
 
   /* For more information, see https://docs.aws.amazon.com/cdk/latest/guide/environments.html */
 });
+
+
+new Ec2Stack(app, 'Ec2Stack', {
+  vpc: vpcStack.vpc,
+  env: { account: process.env.CDK_DEFAULT_ACCOUNT, region: process.env.CDK_DEFAULT_REGION },
+});
+
+
+app.synth();
