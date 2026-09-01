@@ -18,7 +18,7 @@ export class RdsStack extends cdk.Stack {
       }),
       instanceType: ec2.InstanceType.of(ec2.InstanceClass.T3, ec2.InstanceSize.MICRO),
       vpcSubnets: {
-        subnetGroupName: 'DatabaseSubnetGroup',
+        subnetGroupName: 'DatabaseSubnet',
         // subnetType: ec2.SubnetType.PRIVATE_ISOLATED,
         // availabilityZones: [ props.vpc.availabilityZones[2] ],
       },
