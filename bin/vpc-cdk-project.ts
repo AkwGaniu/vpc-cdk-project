@@ -2,6 +2,7 @@
 import * as cdk from 'aws-cdk-lib/core';
 import { VpcCdkProjectStack } from '../lib/vpc-cdk-project-stack';
 import { Ec2Stack } from '../lib/ec2-stack';
+import { RdsStack } from '../lib/rds-stack';
 
 const app = new cdk.App();
 const vpcStack = new VpcCdkProjectStack(app, 'VpcCdkProjectStack', {
@@ -26,5 +27,10 @@ new Ec2Stack(app, 'Ec2Stack', {
   env: { account: process.env.CDK_DEFAULT_ACCOUNT, region: process.env.CDK_DEFAULT_REGION },
 });
 
+
+new RdsStack(app, 'RdsStack', {
+  vpc: vpcStack.vpc,
+  env: { account: process.env.CDK_DEFAULT_ACCOUNT, region: process.env.CDK_DEFAULT_REGION },
+});
 
 app.synth();
