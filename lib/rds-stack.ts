@@ -28,7 +28,7 @@ export class RdsStack extends cdk.Stack {
       storageType: rds.StorageType.GP2,
       publiclyAccessible: false,
       autoMinorVersionUpgrade: true,
-      backupRetention: cdk.Duration.days(7),
+      backupRetention: cdk.Duration.days(1),
       deleteAutomatedBackups: true,
       deletionProtection: false, // Deletion protection disabled
       removalPolicy: cdk.RemovalPolicy.DESTROY, // NOT recommended for production code
